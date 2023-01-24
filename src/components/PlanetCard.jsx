@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import PlanetsContext from '../context/PlanetContext';
 
 function PlanetCard({
-  planet: {
+  planet,
+}) {
+  const {
     name,
     rotation_period: rotationPeriod,
     orbital_period: orbitalPeriod,
@@ -17,10 +19,30 @@ function PlanetCard({
     created,
     edited,
     url,
-  },
-}) {
-  const { textFilter } = useContext(PlanetsContext);
-  if (name.toLowerCase().includes(textFilter.toLowerCase())) {
+  } = planet;
+
+  const { textFilter, numberFilters } = useContext(PlanetsContext);
+
+  const operator = (column, comparison, value) => {
+    switch (comparison) {
+    case 'maior que':
+      return (column > value);
+    case 'menor que':
+      return (column < value);
+    case 'igual a':
+      return (column === value);
+    default:
+      return true;
+    }
+  };
+
+  const filter1 = name.toLowerCase().includes(textFilter.toLowerCase());
+
+  const filter2 = numberFilters
+    .every((each) => (
+      operator(Number(planet[each.column]), each.comparison, Number(each.value))));
+
+  if (filter1 && filter2) {
     return (
       <tr>
         <td>{name}</td>

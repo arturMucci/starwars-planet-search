@@ -22,6 +22,25 @@ function ContextProvider({ children }) {
   const [planets, setPlanets] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [textFilter, setTextFilter] = useState('');
+  const [numberFilters, setNumberFilters] = useState([]);
+
+  const [columnRender, setColumnRender] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
+  const [columnFilter, setColumnFilter] = useState('population');
+
+  const [comparisonRender, setComparisonRender] = useState([
+    'maior que',
+    'menor que',
+    'igual a',
+  ]);
+  const [comparisonFilter, setComparisonFilter] = useState('maior que');
+
+  const [valueFilter, setValueFilter] = useState('0');
 
   useEffect(() => {
     fetch('https://swapi.dev/api/planets')
@@ -41,6 +60,18 @@ function ContextProvider({ children }) {
     setTitles,
     textFilter,
     setTextFilter,
+    numberFilters,
+    setNumberFilters,
+    columnRender,
+    setColumnRender,
+    columnFilter,
+    setColumnFilter,
+    comparisonRender,
+    setComparisonRender,
+    comparisonFilter,
+    setComparisonFilter,
+    valueFilter,
+    setValueFilter,
   };
 
   return (
