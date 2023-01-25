@@ -31,6 +31,7 @@ function ContextProvider({ children }) {
     'rotation_period',
     'surface_water',
   ]);
+
   const [columnFilter, setColumnFilter] = useState('population');
 
   const [comparisonRender, setComparisonRender] = useState([

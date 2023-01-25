@@ -40,7 +40,8 @@ function PlanetCard({
 
   const filter2 = numberFilters
     .every((each) => (
-      operator(Number(planet[each.column]), each.comparison, Number(each.value))));
+      operator(Number(planet[each.column]), each.comparison, Number(each.value))
+    ));
 
   if (filter1 && filter2) {
     return (
