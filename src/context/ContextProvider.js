@@ -39,6 +39,7 @@ function ContextProvider({ children }) {
     'menor que',
     'igual a',
   ]);
+
   const [comparisonFilter, setComparisonFilter] = useState('maior que');
 
   const [valueFilter, setValueFilter] = useState('0');
