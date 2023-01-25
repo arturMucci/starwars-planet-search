@@ -5,13 +5,10 @@ import ContextProvider from './context/ContextProvider';
 
 function App() {
   return (
-    <>
-      <ContextProvider>
-        <Filters />
-        <Table />
-      </ContextProvider>
-      ,
-    </>
+    <ContextProvider>
+      <Filters />
+      <Table />
+    </ContextProvider>
   );
 }
 

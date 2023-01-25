@@ -16,6 +16,8 @@ function Filters() {
     setComparisonFilter,
     valueFilter,
     setValueFilter,
+    ordenation,
+    setOrdenation,
   } = useContext(PlanetsContext);
 
   const filterFilters = (column) => {
@@ -42,6 +44,15 @@ function Filters() {
     setNumberFilters(numberFilters.filter((filter) => filter.column !== column));
   };
 
+  const changeOrdenation = ({ target }) => {
+    setOrdenation({
+      order: {
+        ...ordenation.order,
+        sort: target.id,
+      },
+    });
+  };
+
   return (
     <form>
       <section>
@@ -61,7 +72,15 @@ function Filters() {
           name="column-filter"
           id="column-filter"
           value={ columnFilter }
-          onChange={ ({ target }) => setColumnFilter(target.value) }
+          onChange={ ({ target }) => {
+            setColumnFilter(target.value);
+            setOrdenation({
+              order: {
+                ...ordenation.order,
+                column: target.value,
+              },
+            });
+          } }
         >
           {
             columnRender.map((each, index) => (
@@ -100,7 +119,41 @@ function Filters() {
             id="value-filter"
           />
         </label>
-
+        <label
+          htmlFor="ASC"
+        >
+          <input
+            type="radio"
+            name="ordenação"
+            id="ASC"
+            checked={ ordenation.order.sort === 'ASC' }
+            onChange={ changeOrdenation }
+          />
+          Ascendente
+        </label>
+        <label
+          htmlFor="ASC"
+        >
+          <input
+            type="radio"
+            name="ordenação"
+            id="DESC"
+            checked={ ordenation.order.sort === 'DESC' }
+            onChange={ changeOrdenation }
+          />
+          Descendente
+        </label>
+        {/* <button
+          onClick={ () => setOrdenation({
+            order: {
+              column: columnFilter,
+              sort: order,
+            },
+          }) }
+          type="button"
+        >
+          Sort
+        </button> */}
         <button
           data-testid="button-remove-filters"
           type="button"

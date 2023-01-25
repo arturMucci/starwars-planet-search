@@ -44,6 +44,12 @@ function ContextProvider({ children }) {
 
   const [valueFilter, setValueFilter] = useState('0');
 
+  const [ordenation, setOrdenation] = useState({
+    order: {
+      column: '',
+      sort: '',
+    } });
+
   useEffect(() => {
     fetch('https://swapi.dev/api/planets')
       .then((response) => response.json())
@@ -74,6 +80,8 @@ function ContextProvider({ children }) {
     setComparisonFilter,
     valueFilter,
     setValueFilter,
+    ordenation,
+    setOrdenation,
   };
 
   return (

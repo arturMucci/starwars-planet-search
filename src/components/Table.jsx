@@ -9,7 +9,14 @@ function Table() {
     <table>
       <thead>
         <tr>
-          {titles.map((title, index) => <th key={ `${title}${index}` }>{title}</th>)}
+          {titles.map((title, index) => (
+            <th
+              data-testid="table-header"
+              key={ `${title}${index}` }
+            >
+              {title}
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>
